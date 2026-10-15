@@ -1,0 +1,42 @@
+/* Fork theme: neutral graphite palette in place of upstream's pink.
+   `:root:root` outranks theme.css's `:root`, so these win regardless of
+   import order; theme.css's active tokens and `data-theme` overrides pick
+   them up through the --light-* / --dark-* source variables. */
+
+:root:root {
+  /* "logo-primary" is upstream's soft accent: selected sidebar item, hover
+     borders, focus rings. Keep it a quiet gray that text sits on. */
+  --light-color-logo-primary: #d4d4d8;
+  --light-color-logo-stroke: #18181b;
+  --light-color-ui: #18181b;
+
+  --dark-color-text: #f4f4f5;
+  --dark-color-background: #1c1c1e;
+  --dark-color-logo-primary: #3f3f46;
+  --dark-color-logo-stroke: #f4f4f5;
+  --dark-color-ui: #5a5a63;
+
+  /* Upstream keeps this one constant; here it flips so filled controls
+     (primary buttons, toggles, sliders) stay visible on both surfaces. */
+  --color-background-ui: var(--light-color-ui);
+
+  /* Native range thumbs / checkboxes instead of the browser's blue. */
+  accent-color: var(--color-background-ui);
+
+  /* Recording overlay: monochrome bars, like the rest of the UI. */
+  --s-accent: var(--color-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:root {
+    --color-background-ui: var(--dark-color-ui);
+  }
+}
+
+:root:root[data-theme="light"] {
+  --color-background-ui: var(--light-color-ui);
+}
+
+:root:root[data-theme="dark"] {
+  --color-background-ui: var(--dark-color-ui);
+}

@@ -88,4 +88,4 @@ const HandyTextLogo = ({
   );
 };
 
-export default HandyTextLogo;
+export { default } from "./ForkTextLogo";
